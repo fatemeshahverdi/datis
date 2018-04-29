@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <style>
+            body{margin: 0;}
+            .part{ float: left;}
+            .part:hover .cnt{height: 400px;overflow: auto;}
+            .part:hover .ti{background-color: #fff}
+            .flaot{float: left;}
+            .ti{background-color: #05B2D2; min-width: 50px; position: relative;
+               padding: 5px;  margin: 0 5px; font-weight: bold;z-index: 100; }
+            .cnt{background-color: #478500; height: 0; width: 350px;overflow:hidden;position: absolute; left: 5px; top: 35px;}
+        </style>
+    </head>
+    <body>
+        <div style="margin: 50px; position: relative;">
+            <div class="part">
+                <div class="flaot">
+                    <div class="ti" id="first" style="">General Prodauct Information</div>
+                    <div class="cnt">test1 content</div>
+                </div>
+            </div>
+            <div class="part">
+                <div class="flaot" >
+                    <div class="ti" style="">Chemical Physical Data</div>
+                    <div class="cnt">Chemical Physical Data</div>
+                </div>
+            </div>
+            <div class="part">
+                <div class="flaot">
+                    <div class="ti" style="">Package</div>
+                    <div class="cnt">test3 content</div>
+                </div>
+            </div>
+            <div class="part">
+                <div class="flaot" >
+                    <div class="ti" style="">Specification</div>
+                    <div class="cnt">test4 content</div>
+                </div>
+            </div>
+            <div class="part">
+                <div class="flaot" >
+                    <div class="ti" style="" id="end">Toxicology</div>
+                    <div class="cnt">test4 content</div>
+                </div>
+            </div>
+            <script>
+                var onl=window.onload;
+                var onr=window.onresize;
+                function reSize2()
+                {
+                    var end=document.getElementById('end');
+                    var elms=document.getElementsByClassName('cnt');
+                    var top=""+(end.offsetTop+end.offsetHeight)+"px";
+                    for(var i=0;i<elms.length;i++)
+                    {
+                        elms[i].style.top=top;
+                    }
+                    var end=document.getElementById('first');
+                    var elms=document.getElementsByClassName('ti');
+                    if(document.body.offsetWidth<700)
+                    {
+                        
+                        var top=(end.offsetWidth)+"px";
+                        for(var i=0;i<elms.length;i++)
+                        {
+                            elms[i].style.width=top;
+                        }
+                    }
+                    else
+                    {
+                        for(var i=0;i<elms.length;i++)
+                        {
+                            elms[i].style.width="auto";
+                        }
+                    }
+                }
+                window.onload=function ()
+                {
+                    if(onl) onl();
+                    reSize2()
+                };
+                window.onresize=function ()
+                {
+                    if(onr)onr();
+                    reSize2();
+                };
+            </script>
+        </div>
+        
+        <?php echo pow(2,3);?>
+        <pre>
+            <?php
+
+var_dump($_SERVER);
+
+?>
+        </pre>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+<p>With media types a page can have one layout for screen, one for print, one for handheld devices, etc.</p>
+
+<p>Media TypesZZZZZZZZZZZZZZZZZZZZZZZZZZ</p>
+
+<p>Some CSS properties are only designed for a certain media. For example the &quot;voice-family&quot; property is designed for aural user agents. Some other properties can be used for different media types. For example, the &quot;font-size&quot; property can be used for both screen and print media, but perhaps with different values. A document usually needs a larger font-size on a screen than on paper, and sans-serif fonts are easier to read on the screen, while serif fonts are easier to read on paper.</p>
+
+<p>The @media Rule The @media rule allows different style rules for different media in the same style sheet.</p>
+
+<p>The style in the example below tells the browser to display a 14 pixels Verdana font on the screen. But if the page is printed, it will be in a 10 pixels Times font. Notice that the font-weight is set to bold, both on screen and on paper:</p>

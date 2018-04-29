@@ -1,0 +1,11 @@
+DirectoryIndex test.html
+ErrorDocument 404 http://localhost:8080/datis/test/404.html
+AddType application/x-httpd-php .html
+
+#rewritecond %{REQUEST_FILENAME} !-d # if requested uri is not directory (!-d)
+#rewriterule ^([A-Za-z0-9-]+)/?$ $1/$1.php[NC,L]# filename.php
+
+#RewriteCond %{REQUEST_FILENAME} -d # if requested uri is not directory (-d)
+#RewriteCond %{REQUEST_FILENAME}\.php !-f # and if there is not a file (!-f)
+#RewriteRule ^([A-Za-z0-9-]+)/?$ $1/$1.php[NC,L]# test2\.php
+

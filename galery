@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<?php
+$a=file("document/picAddress");
+?>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            var t;
+            function reset()
+            {
+                var node1=document.getElementById("show");
+                for(var i=0;i<node1.childNodes.length;i++)
+                {
+                    node1.childNodes[i].style.display="none";
+                }
+            }
+            function NEXT()
+            {
+                var node2=document.getElementById("show");
+                for(var i=0;i<node2.childNodes.length;i++)
+                {
+                    if(node2.childNodes[i].style.display=="block")
+                    {
+                        reset();
+                        i++;
+                        i=i%node2.childNodes.length;
+                        node2.childNodes[i].style.display="block";
+                        break;
+                    }
+                }
+            }
+            function NEX()
+            {
+                clearInterval(t);
+                NEXT();
+                delay();
+                
+            }
+            function delay()
+            {
+               t=setInterval("NEXT()",3000);
+            }
+            function previous()
+            {
+                var node5=document.getElementById("show");
+                for(var i=0;i<node5.childNodes.length;i++)
+                {
+                    if(node5.childNodes[i].style.display=="block")
+                    {
+                        reset();
+                        i--;
+                        i=(i+(node5.childNodes.length))%node5.childNodes.length;
+                        node5.childNodes[i].style.display="block";
+                        break;
+                    }
+                    
+                }
+                
+            }
+            function PREV()
+            {
+                clearInterval(t);
+                previous();
+                delay();
+            }
+            function change(id)
+            {
+                reset();
+                clearInterval(t);
+                var node3=document.getElementById(id);
+                node3.style.display="block";
+                delay();
+            }
+        </script>
+        <style>
+            #pic2
+            {
+                display:none;
+            }
+            #show
+            {
+                margin:0 auto;
+                width:100%;
+                
+            }
+            #show img{width:100%;height:auto}
+           
+            #prev,#next
+            {
+                position:absolute;
+                z-index:10;
+                width:70px;
+                padding:50% 0;
+                background-repeat:no-repeat;
+                background-position:0 30%;
+            }
+            #next
+            {
+               right:0;
+            }
+            .b
+            {
+               position:relative;
+            }
+            #base:hover .b #prev
+            {
+               background-image:url('img/previous.png');
+               
+            }
+             #base:hover .b #next
+            {
+               background-image:url('img/next.png');
+               
+            }
+        </style>
+    </head>
+    <body style="margin:0;" onload="change('pic1');">
+        
+        <div id="base">
+            <div class='b'>
+                <div id="prev" onclick="PREV();"></div><div id="next"  onclick="NEX();"></div>
+            </div>
+            <div id="show"><img id="pic1" src="<?php echo ($a[0]);?>" alt="pic"><img id="pic2" src="<?php echo ($a[1]);?>" alt="pic"><img id="pic3" src="<?php echo ($a[2]);?>" alt="pic"><img id="pic4" src="<?php echo ($a[3]);?>" alt="pic"></div>
+        </div>
+        
+    </body>
+</html>

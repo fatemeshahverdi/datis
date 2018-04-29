@@ -1,0 +1,82 @@
+var xmlhttp1;
+         var xmlhttp3;
+         if(window.XMLHttpRequest)
+         {
+             xmlhttp1=new XMLHttpRequest("window.XMLHTTP");
+             xmlhttp3=new XMLHttpRequest("window.XMLHTTP");
+         }
+         else
+         {
+             xmlhttp1=new ActiveXobject("Microsoft.XMLHTTP");
+             xmlhttp3=new ActiveXobject("Microsoft.XMLHTTP");
+         }
+         xmlhttp1.onreadystatechange=function ()
+         {
+             document.getElementById('test').innerHTML=xmlhttp1.responseText;
+             if(xmlhttp1.readyState==4 && xmlhttp1.status==200)
+             {
+                 var t1=document.getElementById("chat");
+                 var x1=xmlhttp1.responseText;
+                 console=x1;
+                 var e1=x1.split("$$");
+                 if(e1[0].indexOf("chat")>-1)
+                 {
+                     t1.innerHTML=t1.innerHTML+e1[1];
+                 }
+                 else if(e1[0].indexOf("history")>-1)
+                 {
+                     t1.innerHTML=e1[1]+t1.innerHTML; 
+                 }
+             }
+         };
+//         xmlhttp3.onreadystatechange=function ()
+//         {
+//             if(xmlhttp3.readyState==4 && xmlhttp3.status==200)
+//             {
+//                 var t2=document.getElementById("online");
+//                 document.getElementById("online").innerHTML=xmlhttp3.responseText;
+//                 
+//                 
+//             }
+//         }
+         function updateUsers()
+         {
+             
+//             xmlhttp3.open("get","testOnlineUsers.php?idC=<?php echo $_GET['id']; ?>&part=onlineUsers",true);
+//             xmlhttp3.send();
+         }
+         function updateChat(str)
+         {
+             
+             if (str=="")
+             {
+                 document.getElementById("chat").innerHTML="";
+                 return ;
+             }
+             
+             xmlhttp1.open("get","testChat.php?idC=<?php echo $_GET['id']; ?>&part=chat&str="+str);
+             xmlhttp1.send();
+         }
+         window.onload=function ()
+         {
+             update();
+             setInterval('update()',1000);
+             updateUsers();
+             setInterval('updateUsers()',10000);
+         }
+         function update()
+         {
+             xmlhttp1.open("get","testChat.php?idC=<?php echo $_GET['id']; ?>&part=chat",true);
+             xmlhttp1.send();
+         }
+         function prevU()
+         {
+             document.getElementById("link").style.visibility="hidden";
+             xmlhttp1.open("get","testChat.php?idC=<?php echo $_GET['id']; ?>&part=history",true);
+             xmlhttp1.send();
+         }
+         function selectUser (a,b)
+         {
+             xmlhttp3.open("get","testOnlineUsers.php?idK="+a+"&idC="+b+"&part=onlineUser",true);
+             xmlhttp3.send();
+         }
